@@ -10,7 +10,11 @@ class ScoreInput(object):
             'frame': frame,
         })
 
-    def read(self, frame, roll):
+    def read(self, frame, roll, prev=0):
+        if prev > 9:
+            # strike, roll#2 can be zero only. 
+            return 0
+
         while True:
             try:
                 score = self.raw_input("Frame/Roll %(frame)d/%(roll)d: ", frame + 1, roll + 1)
@@ -48,15 +52,19 @@ class FakeInput(object):
         (2, 8, 6, 133),
     ]
 
-    def read(self, frame, roll):
+    def read(self, frame, roll, prev):
         return self._test_frames[frame][roll]
 
 
 def _read_n_rolls(_input, frame, n):
     scores = []
 
+    prev = 0
+
     for roll in range(n):
-        scores.append(_input.read(frame, roll))
+        score = _input.read(frame, roll, prev)
+        scores.append(score)
+        prev = score
 
     return scores
 
@@ -114,4 +122,4 @@ def columbine(_input):
 
 if __name__ == "__main__":
 
-	columbine(FakeInput())
+	columbine(ScoreInput())

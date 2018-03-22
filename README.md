@@ -8,9 +8,7 @@ python3 bowling.py
 
 ## Interna
 
-By default, there's a `FakeInput` class active (no typing required). It used the values of the exercise sheet as input.
+By default, there's a `ScoreInput` class active, which prompts all values. There's also a `FakeInput` class availble (no typing required). It uses the values of the exercise sheet as input.
 
-You can replace it by `ScoreInput()`, which will then ask all the required values. At input-level there's no special input validation (like strike-detection and skipping rolls), which means, that you have to enter the correct (= allowed according the rules / number of available pins) yourself.
-
-The calculation of the total score does check such special cases and takes bonus scores into account. Not sure though, if the calculation matches official rules with regards to two (or three) strikes in the last frame, but that's not part of exercise anyways.
+The calculation of the total score checks special cases (as strikes) and takes bonus scores into account. Not sure though, if the calculation matches official rules with regards to two (or possibly three) strikes in the last frame, but that's not part of exercise anyways.
 
